@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Categoria(models.Model):
 
-    categoria = models.TextField(blank=True, null=True)
+    categoria = models.TextField(primary_key=True)
     
 class Receita(models.Model):
 	title = models.CharField(max_length=255)
@@ -19,8 +19,8 @@ class Receita(models.Model):
 
 class Avaliacao(models.Model):
     
-    receita = models.ForeignKey(Receita, on_delete=models.CASCADE, related_name='tasks')
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks')
+    receita = models.ForeignKey(Receita, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     nota = models.IntegerField(blank=True, null=True)
     comentarios = models.TextField(max_length=255, blank=False)
     
